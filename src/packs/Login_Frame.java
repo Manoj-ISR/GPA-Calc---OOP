@@ -88,7 +88,7 @@ public class Login_Frame extends javax.swing.JFrame {
         jTextField_name = new javax.swing.JTextField();
         dashboardPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextField_CGPA = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_final = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
@@ -173,17 +173,15 @@ public class Login_Frame extends javax.swing.JFrame {
                     .addComponent(jTextField_sem_name)
                     .addComponent(jTextField_dialog_name, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                     .addComponent(jTextField_showGPA))
+                .addGap(18, 18, 18)
                 .addGroup(jDialog_add_semLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDialog_add_semLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addGap(0, 1, Short.MAX_VALUE)
                         .addComponent(jButton12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton13)
-                        .addContainerGap())
-                    .addGroup(jDialog_add_semLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton10)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jButton13))
+                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jDialog_add_semLayout.setVerticalGroup(
@@ -217,6 +215,8 @@ public class Login_Frame extends javax.swing.JFrame {
 
         jLabel9.setText("Semester Title :");
 
+        jTextField_sem_name1.setEditable(false);
+
         jButton11.setText("Save Data and Show GPA");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,17 +226,14 @@ public class Login_Frame extends javax.swing.JFrame {
 
         jTable_show_sem_data.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Course Name", "Credits", "Grade Obtained"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -400,7 +397,7 @@ public class Login_Frame extends javax.swing.JFrame {
                             .addComponent(jPasswordField1_password, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(36, 36, 36)
                             .addComponent(jCheckBox1))))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         loginPanelLayout.setVerticalGroup(
             loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,7 +483,7 @@ public class Login_Frame extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(registerPanelLayout.createSequentialGroup()
                         .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registerPanelLayout.createSequentialGroup()
@@ -529,22 +526,30 @@ public class Login_Frame extends javax.swing.JFrame {
 
         jLabel6.setText("Cumulative GPA :");
 
-        jTextField1.setEditable(false);
+        jTextField_CGPA.setEditable(false);
 
         jTable_final.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Sem Name", "GPA obtained"
+                "Sem Name", "GPA obtained", "Credits Taken"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Float.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable_final);
@@ -557,6 +562,11 @@ public class Login_Frame extends javax.swing.JFrame {
         });
 
         jButton7.setText("Delete Sem Data");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Add Sem Data");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -565,11 +575,21 @@ public class Login_Frame extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setText("Refresh Table");
+        jButton9.setText("Refresh Table and Update CGPA");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Name: ");
 
         jTextField_dash_name.setEditable(false);
+        jTextField_dash_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_dash_nameActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("logout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -584,25 +604,21 @@ public class Login_Frame extends javax.swing.JFrame {
             dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(dashboardPanelLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dashboardPanelLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_CGPA, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(dashboardPanelLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(dashboardPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dashboardPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField_dash_name, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_dash_name, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dashboardPanelLayout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dashboardPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -626,7 +642,7 @@ public class Login_Frame extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField_CGPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(dashboardPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -668,7 +684,6 @@ public class Login_Frame extends javax.swing.JFrame {
         if (result.next())
         {
             jLabel3_loginresult.setText("login successful");
-            JOptionPane.showMessageDialog(null,"LOGIN SUCCESSFUL","TITLE",JOptionPane.PLAIN_MESSAGE);
             CardLayout c1=(CardLayout)card.getLayout();
             c1.show(card,"dashCard");
             jTextField_dash_name.setText(current_uname);
@@ -755,6 +770,15 @@ public class Login_Frame extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         jDialog_add_sem.setVisible(true);
+        jTextField_sem_name.setText("");
+        jTextField_showGPA.setText("");
+        DefaultTableModel tb1 = (DefaultTableModel)jTable_add_sem_data.getModel();
+        int no_rows = jTable_add_sem_data.getRowCount();
+        if (no_rows> 0) {
+            for (int i = no_rows-1; i >= 0; i--) {
+                tb1.removeRow(i);
+            }
+        }
         String current_name = new String(jTextField_dash_name.getText());
         jTextField_dialog_name.setText(current_name);
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -789,16 +813,32 @@ public class Login_Frame extends javax.swing.JFrame {
          
         Connection connection = null;
         PreparedStatement ps;
+        String name = jTextField_dialog_name.getText();
+        String tablename = jTextField_sem_name.getText()+"_"+name;
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost/gpa_database","root","");
             connection.setAutoCommit(false);
+            while(jTable_final.getRowCount() > 0) 
+            {
+                ((DefaultTableModel) jTable_final.getModel()).removeRow(0);
+            }
             Statement sta = connection.createStatement();
-            int a = sta.executeUpdate("CREATE TABLE "+jTextField_sem_name.getText()+" (CourseName varchar(255) ,Credits int, GradeOb int)");
-            System.out.println("after creating new table. check in db now");            
-            //if table name exists, ask to change name
+            int a = sta.executeUpdate("CREATE TABLE IF NOT EXISTS "+tablename+" (CourseName varchar(255) ,Credits int, GradeOb int)");
+            System.out.println("after creating new table. check in db now");
+            //TODO: if table name pair exists, ask to change name
+            //TODO: if table name exists, ask to change name
             DefaultTableModel tb1 = (DefaultTableModel)jTable_add_sem_data.getModel();
             int no_rows = tb1.getRowCount();
-            String update_table = "INSERT INTO "+jTextField_sem_name.getText()+"(CourseName,Credits,GradeOb) VALUES(?,?,?)";
+            int denom_int =0;
+            for (int row = 0; row < no_rows; row++){
+            
+                int cred = (int)tb1.getValueAt(row, 1);
+                denom_int += cred;
+            }
+            //TODO: Avoid repetitive statements in usertableslist
+            Statement sta3 = connection.createStatement();
+            int a3 = sta3.executeUpdate("DELETE FROM "+tablename+"");
+            String update_table = "INSERT INTO "+tablename+"(CourseName,Credits,GradeOb) VALUES(?,?,?)";
             PreparedStatement pst = connection.prepareStatement(update_table);
             float num= 0;
             float denom =0;
@@ -814,13 +854,20 @@ public class Login_Frame extends javax.swing.JFrame {
                 pst.setFloat(3, gradeOb);
                 
                 pst.addBatch();
-            } 
+            }
+            float semgpa = num/denom;
+            Statement sta4 = connection.createStatement();
+            int b = sta4.executeUpdate("DELETE FROM usertableslist WHERE name ='"+name+"' AND sem_table_name ='"+tablename+"' ");
+            Statement sta2 = connection.createStatement();
+            int a2 = sta2.executeUpdate("INSERT INTO usertableslist(name,sem_table_name,total_credits,gpa) VALUES ('"+name+"','"+tablename+"','"+denom_int+"','"+semgpa+"')");
             pst.executeBatch();
             connection.commit();
             System.out.println(num/denom);
             DecimalFormat dc = new DecimalFormat("0.00");
             String GPA = dc.format(num/denom);
             jTextField_showGPA.setText(GPA);
+            System.out.println("debug ");
+            System.out.println(denom_int);
             //TODO: check if table is created properly, otherwise display error.
         } catch (SQLException ex) {
             Logger.getLogger(Login_Frame.class.getName()).log(Level.SEVERE, null, ex);
@@ -843,26 +890,252 @@ public class Login_Frame extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        jDialog_show_edit_sem.setVisible(true);
         DefaultTableModel tb1 = (DefaultTableModel)jTable_final.getModel();
+        DefaultTableModel tb2 = (DefaultTableModel)jTable_show_sem_data.getModel();
         int[] selectedRows = jTable_final.getSelectedRows();
-        if (selectedRows.length()>1){
-            JOptionPane.showMessageDialog(null,"INVALID CREDENTIALS","TITLE",JOptionPane.WARNING_MESSAGE);
+        int rowCount = tb2.getRowCount();
+        //TODO: Remove rows one by one from the end of the table
+        for (int i = rowCount - 1; i >= 0; i--) {
+            tb2.removeRow(i);
         }
-        
+        String sem_name = "";
+        String name = jTextField_dash_name.getText();
+        if (selectedRows.length>1){
+            JOptionPane.showMessageDialog(null,"Please select only 1 row","Warning",JOptionPane.WARNING_MESSAGE);
+            jTable_final.clearSelection();
+        }
+        else {
+            Connection connection = null;
+            int row_index = jTable_final.getSelectedRow();
+            if (row_index == -1){
+                JOptionPane.showMessageDialog(null,"Please select atleast 1 row","Warning",JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                jDialog_show_edit_sem.setVisible(true);
+                sem_name = (String)jTable_final.getValueAt(row_index,0);
+                String subsemname = sem_name.substring(0, sem_name.length() - name.length() -1);
+                jTextField_sem_name1.setText(subsemname);                
+                try {
+                    connection = DriverManager.getConnection("jdbc:mysql://localhost/gpa_database","root","");
+                    Statement sta = connection.createStatement();
+                    ResultSet rs = sta.executeQuery("SELECT gpa FROM usertableslist WHERE name ='"+name+"' AND sem_table_name = '"+sem_name+"'");
+                    //TODO: if show is pressed before refresh table, dont do it.
+                    while (rs.next()){
+                        float a = rs.getFloat("gpa");
+                        DecimalFormat dc = new DecimalFormat("0.00");
+                        String GPA = dc.format(a);
+                        jTextField_dialog_name1.setText(name);
+                        jTextField_showGPA1.setText(GPA);
+                    }
+                    System.out.println("d1");
+                    Statement sta2 = connection.createStatement();
+                    System.out.println(sem_name);
+                    ResultSet rs2 = sta2.executeQuery("SELECT CourseName,Credits,GradeOb FROM "+sem_name+"");
+//                    System.out.println("d2");
+                    while (rs2.next()){
+//                        System.out.println("d3");
+                        String semname = rs2.getString("CourseName");
+                        int creds = rs2.getInt("Credits");
+                        float gradeob = rs2.getFloat("GradeOb");
+                        tb2.addRow(new Object[]{semname, creds, gradeob});
+                    }
+                    jTable_show_sem_data.setModel(tb2);              
+                }
+                catch(SQLException e){
+                    Logger.getLogger(Login_Frame.class.getName()).log(Level.SEVERE, null, e);
+
+                }
+                finally{
+                    try {  
+                        connection.close();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Login_Frame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }   
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+        Connection conn = null;
+        PreparedStatement ps;
+        String name = jTextField_dialog_name1.getText();
+        String tablename = jTextField_sem_name1.getText()+"_"+name;
+        try{
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/gpa_database","root","");
+            conn.setAutoCommit(false);
+            Statement sta = conn.createStatement();
+            DefaultTableModel tb1 = (DefaultTableModel)jTable_show_sem_data.getModel();
+            int no_rows = tb1.getRowCount();
+            int denom_int =0;
+            for (int row = 0; row < no_rows; row++){
+                int cred = (int)tb1.getValueAt(row, 1);
+                denom_int += cred;
+            }
+            Statement sta3 = conn.createStatement();
+            int a3 = sta3.executeUpdate("DELETE FROM "+tablename+"");
+            String update_table = "INSERT INTO "+tablename+"(CourseName,Credits,GradeOb) VALUES(?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(update_table);
+            float num= 0;
+            float denom =0;
+            for (int row = 0; row < no_rows; row++){
+            
+                String cname = (String)tb1.getValueAt(row, 0);
+                float cred = (int)tb1.getValueAt(row, 1);
+                float gradeOb = (float)tb1.getValueAt(row, 2);
+                num += cred*gradeOb;
+                denom += cred;
+                pst.setString(1, cname);
+                pst.setFloat(2, cred);
+                pst.setFloat(3, gradeOb);
+                
+                pst.addBatch();
+            }
+            float semgpa = num/denom;
+            Statement sta4 = conn.createStatement();
+            int b = sta4.executeUpdate("DELETE FROM usertableslist WHERE name ='"+name+"' AND sem_table_name ='"+tablename+"' ");
+            Statement sta2 = conn.createStatement();
+            int a2 = sta2.executeUpdate("INSERT INTO usertableslist(name,sem_table_name,total_credits,gpa) VALUES ('"+name+"','"+tablename+"','"+denom_int+"','"+semgpa+"')");
+            pst.executeBatch();
+            conn.commit();
+            System.out.println(num/denom);
+            DecimalFormat dc = new DecimalFormat("0.00");
+            String GPA = dc.format(num/denom);
+            jTextField_showGPA1.setText(GPA);
+            System.out.println("edit data working");
+            //TODO: check if table is created properly, otherwise display error.
+        }
+        catch (SQLException e){
+            Logger.getLogger(Login_Frame.class.getName()).log(Level.SEVERE, null, e);
+        }
+        finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Login_Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
+        
+        DefaultTableModel tb1 = (DefaultTableModel)jTable_show_sem_data.getModel();
+        Object[] row = {"",null,null};
+        tb1.addRow(row);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
+        
+        DefaultTableModel tb1 = (DefaultTableModel)jTable_show_sem_data.getModel();
+        int[] selectedRows = jTable_show_sem_data.getSelectedRows();
+        if (selectedRows.length > 0) {
+            for (int i = selectedRows.length - 1; i >= 0; i--) {
+                tb1.removeRow(selectedRows[i]);
+            }
+        }
     }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        Connection connection = null;
+        PreparedStatement ps;
+        String name = jTextField_dash_name.getText();
+        String end = "_"+name;
+        //TODO: Name slicing to remove _admin.
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/gpa_database","root","");
+            connection.setAutoCommit(false);
+            Statement sta2 = connection.createStatement();
+            //TODO: Insert into table from database
+            while(jTable_final.getRowCount() > 0) 
+            {
+                ((DefaultTableModel) jTable_final.getModel()).removeRow(0);
+            }
+            DefaultTableModel tb1 = (DefaultTableModel)jTable_final.getModel();
+            String sql_get_data = "SELECT name,sem_table_name,total_credits,gpa FROM usertableslist WHERE name = '"+name+"' AND sem_table_name LIKE '%"+end+"' ";
+            ResultSet rs = sta2.executeQuery(sql_get_data);
+            while(rs.next())
+            {
+                String semname = rs.getString("sem_table_name");
+                int creds = rs.getInt("total_credits");
+                Float gpa = rs.getFloat("gpa");
+                tb1.addRow(new Object[]{semname, gpa, creds});
+            }
+            System.out.println("working");
+            jTable_final.setModel(tb1);
+            int no_rows = jTable_final.getRowCount();
+            float num= 0;
+            float denom =0;
+            for (int row = 0; row < no_rows; row++){
+            
+                float cred = (int)tb1.getValueAt(row, 2);
+                float gradeOb = (float)tb1.getValueAt(row, 1);
+                num += cred*gradeOb;
+                denom += cred;
+            }
+            float cgpa = num/denom;
+            DecimalFormat dc = new DecimalFormat("0.00");
+            String CGPA = dc.format(cgpa);
+            jTextField_CGPA.setText(CGPA);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login_Frame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            try {            
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Login_Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        
+        Connection connection = null;
+        PreparedStatement ps;
+        String uname = jTextField_dash_name.getText();
+        String tablename = "";
+        DefaultTableModel tb1 = (DefaultTableModel)jTable_final.getModel();
+        int[] selectedRows = jTable_final.getSelectedRows();
+        if (selectedRows.length > 1) {
+            JOptionPane.showMessageDialog(null,"Select only one row at a time","TITLE",JOptionPane.WARNING_MESSAGE);
+            jTable_final.clearSelection();
+        }     
+        else{
+            try {
+                connection = DriverManager.getConnection("jdbc:mysql://localhost/gpa_database","root","");
+                Statement sta = connection.createStatement();
+                int row_index = jTable_final.getSelectedRow();
+                String sem_name = (String)jTable_final.getValueAt(row_index, 0);
+                System.out.println(sem_name);
+                int a = sta.executeUpdate("DELETE FROM usertableslist WHERE name ='"+uname+"' AND sem_table_name = '"+sem_name+"' ");
+//                if (selectedRows.length > 0) {
+//                    for (int i = selectedRows.length - 1; i >= 0; i--) {
+//                        tb1.removeRow(selectedRows[i]);
+//                    }
+//                }
+                System.out.println("deleted selected table");
+//                Statement sta1 = connection.createStatement();
+//                int b = sta1.executeUpdate("DROP TABLE sem4_admin ");
+//                System.out.println(+ "111");
+                }   
+            catch (SQLException e){
+                System.out.println(e);
+            }
+            finally {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Login_Frame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTextField_dash_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_dash_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_dash_nameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -945,7 +1218,7 @@ public class Login_Frame extends javax.swing.JFrame {
     private javax.swing.JTable jTable_add_sem_data;
     private javax.swing.JTable jTable_final;
     private javax.swing.JTable jTable_show_sem_data;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField_CGPA;
     private javax.swing.JTextField jTextField_dash_name;
     private javax.swing.JTextField jTextField_dialog_name;
     private javax.swing.JTextField jTextField_dialog_name1;
